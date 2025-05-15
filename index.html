@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FoodCheck - 식품 가격 비교</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="index.html" class="header-home-link">
+            <div class="logo">FoodCheck</div>
+        </a>
+    </header>
+
+    <main>
+        <div class="location-settings">
+            <span class="location-display">현재 동네: <strong id="currentLocationDisplay">미설정</strong></span>
+            <div class="location-input-group">
+                <input type="text" id="locationInput" placeholder="예: 울산 우정동, 부산 전체">
+                <button id="setLocationButton">동네 설정</button>
+            </div>
+        </div>
+
+        <div class="search-container">
+            <div class="inputs-column">
+                <div class="input-group product-name-group">
+                    <input type="text" id="productName" placeholder="상품명 (예: 햇반)">
+                    <div id="suggestions-container"></div>
+                </div>
+                <div class="input-group quantity-input-group">
+                    <input type="number" id="quantity" placeholder="수량 (예: 1)" min="1">
+                </div>
+            </div>
+            <button id="searchButton" aria-label="검색">
+                <img src="https://img.icons8.com/ios-filled/50/000000/search--v1.png" alt="검색">
+            </button>
+        </div>
+
+        <div class="favorites-container">
+            <button id="favoritesButton">⭐ 내 즐겨찾기 상품</button>
+        </div>
+
+        <div id="resultsContainer">
+            <p class="results-placeholder">상품명과 수량을 입력하고 검색 버튼을 눌러주세요.</p>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
