@@ -1,6 +1,5 @@
-/* body, header, .header-home-link, .logo, main, .location-settings, .search-container, etc. 
-   이전 스타일은 대부분 유지됩니다. 추가/변경된 부분만 아래에 표시하거나, 전체 CSS를 제공합니다.
-   사용자 요청에 따라 전체 CSS를 제공합니다. */
+/* body, header 등 기존 스타일은 유지됩니다.
+   알림창과 모달 스타일, 그리고 header 내부 알림창 위치 조정을 위한 스타일이 추가/수정됩니다. */
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -16,24 +15,62 @@ body {
 header {
     background-color: #28a745;
     color: white;
-    padding: 20px 0;
+    padding: 10px 20px; /* 패딩 조정 */
     text-align: center;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex; /* 로고와 알림창 배치를 위해 flex 사용 */
+    justify-content: space-between; /* 로고는 왼쪽, 알림창은 오른쪽 */
+    align-items: center;
+    box-sizing: border-box;
 }
 
 .header-home-link {
-    display: block;
     text-decoration: none;
     color: inherit;
+    display: flex; /* 로고 정렬을 위해 */
+    align-items: center;
 }
 
 .logo {
-    font-size: 2.2em;
+    font-size: 2em; /* 크기 약간 줄임 */
     font-weight: bold;
+    text-align: left; /* 로고는 왼쪽에 있도록 */
 }
 
-main {
+/* 알림창 스타일 */
+#notificationArea {
+    background-color: rgba(0,0,0,0.1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 0.8em;
+    max-height: 100px; /* 최대 높이 지정 */
+    overflow-y: auto; /* 내용 많으면 스크롤 */
+    min-width: 200px; /* 최소 너비 */
+    text-align: left;
+}
+#notificationArea h4 {
+    margin: 0 0 5px 0;
+    font-size: 0.9em;
+    border-bottom: 1px solid rgba(255,255,255,0.3);
+    padding-bottom: 3px;
+}
+#notificationList {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#notificationList li {
+    padding: 2px 0;
+    border-bottom: 1px dotted rgba(255,255,255,0.2);
+    font-size: 0.85em;
+}
+#notificationList li:last-child {
+    border-bottom: none;
+}
+
+
+main { /* main 스타일은 이전과 동일 */
     width: 90%;
     max-width: 800px;
     margin-top: 30px;
@@ -46,6 +83,12 @@ main {
     border-radius: 8px;
 }
 
+/* ... (location-settings, search-container, inputs-column, input-group, #productName, #quantity, 
+   #suggestions-container, .suggestion-item, #searchButton, #externalSearchLinksContainer, 
+   .external-link-button, .actions-container, #favoritesButton, #localSalesButton, 
+   #resultsContainer, .results-placeholder, .category-title, .result-item, .rank, 
+   .product-details, .product-title, .product-meta, .product-platform 등 이전 스타일 유지) ... */
+
 .location-settings {
     margin-bottom: 25px;
     padding: 15px;
@@ -53,292 +96,129 @@ main {
     border-radius: 6px;
     text-align: center;
 }
+.location-display { display: block; margin-bottom: 10px; font-size: 0.95rem; color: #333; }
+#currentLocationDisplay { font-weight: bold; color: #28a745; }
+.location-input-group { display: flex; gap: 8px; justify-content: center; }
+#locationInput { flex-grow: 1; max-width: 300px; padding: 10px 12px; border: 1px solid #ced4da; border-radius: 4px; font-size: 0.95rem; }
+#setLocationButton { padding: 10px 15px; background-color: #5cb85c; color: white; border: none; border-radius: 4px; cursor: pointer; font-size: 0.95rem; transition: background-color 0.15s ease-in-out; }
+#setLocationButton:hover { background-color: #4cae4c; }
 
-.location-display {
-    display: block;
-    margin-bottom: 10px;
-    font-size: 0.95rem;
-    color: #333;
+.search-container { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 15px; justify-content: center; }
+.inputs-column { display: flex; flex-direction: column; gap: 10px; width: 100%; max-width: 400px; }
+.input-group { position: relative; width: 100%; }
+#productName, #quantity { width: 100%; padding: 12px 15px; border: 1px solid #ced4da; border-radius: 4px; font-size: 1rem; box-sizing: border-box; transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
+#productName:focus, #quantity:focus { border-color: #80bdff; outline: 0; box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25); }
+#suggestions-container { position: absolute; background-color: white; border: 1px solid #ced4da; border-top: none; width: calc(100% - 2px); max-height: 200px; overflow-y: auto; z-index: 1000; box-shadow: 0 4px 6px rgba(0,0,0,0.1); border-radius: 0 0 4px 4px; left: 0; display: none; }
+.suggestion-item { padding: 10px 15px; cursor: pointer; font-size: 0.95rem; }
+.suggestion-item:hover { background-color: #e9ecef; }
+#searchButton { padding: 10px; background-color: #28a745; color: white; border: none; border-radius: 4px; cursor: pointer; height: 106px; display: flex; align-items: center; justify-content: center; transition: background-color 0.15s ease-in-out; box-sizing: border-box; }
+#searchButton img { width: 24px; height: 24px; filter: invert(100%); }
+#searchButton:hover { background-color: #218838; }
+
+#externalSearchLinksContainer { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+.external-link-button { display: inline-block; padding: 10px 15px; border-radius: 5px; text-decoration: none; font-size: 0.9em; font-weight: 500; transition: transform 0.1s ease; }
+.external-link-button:hover { transform: translateY(-2px); }
+.external-link-button.coupang { background-color: #ff4757; color: white; }
+.external-link-button.naver { background-color: #2DB400; color: white; }
+
+.actions-container { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+#favoritesButton, #localSalesButton { padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 1rem; transition: background-color 0.15s ease-in-out; }
+#favoritesButton { background-color: #ffc107; color: #212529; }
+#favoritesButton:hover { background-color: #e0a800; }
+#localSalesButton { background-color: #17a2b8; color: white; }
+#localSalesButton:hover { background-color: #138496; }
+
+#resultsContainer { margin-top: 20px; }
+.results-placeholder { color: #6c757d; text-align: center; font-size: 1rem; padding: 20px 0; }
+.category-title { font-size: 1.5em; color: #28a745; margin-top: 20px; margin-bottom: 15px; padding-bottom: 5px; border-bottom: 2px solid #28a745; }
+.category-title:first-child { margin-top: 0; }
+
+.result-item { display: flex; align-items: flex-start; padding: 15px; border: 1px solid #e9ecef; background-color: #fff; margin-bottom: 12px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: box-shadow 0.2s ease-in-out; position: relative; }
+.result-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+.result-item.sale-item .product-title {}
+.result-item.sale-item .product-meta strong {}
+.original-price { text-decoration: line-through; color: grey; font-size: 0.9em; margin-left: 8px; }
+
+.rank { font-size: 1.3em; font-weight: bold; color: #28a745; margin-right: 20px; min-width: 30px; text-align: center; line-height: 1.5; }
+.product-details { display: flex; flex-direction: column; flex-grow: 1; }
+.product-title { font-size: 1.15em; font-weight: 600; color: #007bff; text-decoration: none; margin-bottom: 8px; }
+.product-title:hover { text-decoration: underline; color: #0056b3; }
+.product-meta { font-size: 0.95em; color: #495057; margin-bottom: 4px; }
+.product-meta strong { color: #dc3545; font-weight: 600; }
+.product-platform { font-size: 0.85em; color: #6c757d; margin-top: 5px; }
+
+
+/* 모달 스타일 */
+.modal {
+    display: none; /* 기본적으로 숨김 */
+    position: fixed; /* 화면에 고정 */
+    z-index: 1001; /* 다른 요소들 위에 표시 */
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto; /* 스크롤 가능 */
+    background-color: rgba(0,0,0,0.4); /* 반투명 배경 */
 }
-#currentLocationDisplay {
-    font-weight: bold;
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* 화면 중앙에 위치 */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 400px; /* 최대 너비 */
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    text-align: left;
+}
+
+.modal-content h3 {
+    margin-top: 0;
     color: #28a745;
 }
-
-.location-input-group {
-    display: flex;
-    gap: 8px;
-    justify-content: center;
+.modal-content p {
+    font-size: 0.9em;
+    margin-bottom: 10px;
 }
-
-#locationInput {
-    flex-grow: 1;
-    max-width: 300px;
-    padding: 10px 12px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 0.95rem;
+.modal-content .form-group { /* 모달 내 폼 그룹 스타일 */
+    margin-bottom: 15px;
 }
-
-#setLocationButton {
-    padding: 10px 15px;
-    background-color: #5cb85c;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.95rem;
-    transition: background-color 0.15s ease-in-out;
+.modal-content label {
+    font-size: 0.9em;
 }
-#setLocationButton:hover {
-    background-color: #4cae4c;
-}
-
-.search-container {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    margin-bottom: 15px; /* 간격 약간 줄임 */
-    justify-content: center;
-}
-
-.inputs-column {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.modal-content input[type="number"] {
     width: 100%;
-    max-width: 400px;
+    padding: 8px;
+    font-size: 0.9em;
 }
-
-.input-group {
-    position: relative;
-    width: 100%;
-}
-
-#productName, #quantity {
-    width: 100%;
-    padding: 12px 15px;
-    border: 1px solid #ced4da;
-    border-radius: 4px;
-    font-size: 1rem;
-    box-sizing: border-box;
-    transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
-}
-
-#productName:focus, #quantity:focus {
-    border-color: #80bdff;
-    outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
-}
-
-#suggestions-container {
-    position: absolute;
-    background-color: white;
-    border: 1px solid #ced4da;
-    border-top: none;
-    width: calc(100% - 2px);
-    max-height: 200px;
-    overflow-y: auto;
-    z-index: 1000;
-    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    border-radius: 0 0 4px 4px;
-    left: 0;
-    display: none;
-}
-
-.suggestion-item {
-    padding: 10px 15px;
-    cursor: pointer;
-    font-size: 0.95rem;
-}
-.suggestion-item:hover {
-    background-color: #e9ecef;
-}
-
-#searchButton {
-    padding: 10px;
+.modal-content button { /* 모달 내 버튼 */
     background-color: #28a745;
     color: white;
+    padding: 10px 15px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    height: 106px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: background-color 0.15s ease-in-out;
-    box-sizing: border-box;
+    font-size: 0.95em;
+    display: block; /* 버튼을 블록 요소로 만들어 전체 너비 사용 또는 중앙 정렬 용이 */
+    width: 100%;
+    margin-top: 10px;
 }
-#searchButton img {
-    width: 24px;
-    height: 24px;
-    filter: invert(100%);
-}
-#searchButton:hover {
+.modal-content button:hover {
     background-color: #218838;
 }
 
-/* 외부 검색 링크 컨테이너 스타일 */
-#externalSearchLinksContainer {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    margin-bottom: 20px;
-    flex-wrap: wrap; /* 화면 작을 시 줄바꿈 */
-}
 
-.external-link-button {
-    display: inline-block;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 0.9em;
-    font-weight: 500;
-    transition: transform 0.1s ease;
-}
-.external-link-button:hover {
-    transform: translateY(-2px);
-}
-.external-link-button.coupang { /* 예시 클래스, JS에서 추가 가능 */
-    background-color: #ff4757; /* 쿠팡 느낌 색상 */
-    color: white;
-}
-.external-link-button.naver { /* 예시 클래스, JS에서 추가 가능 */
-    background-color: #2DB400; /* 네이버 느낌 색상 */
-    color: white;
-}
-
-
-/* 즐겨찾기 및 동네세일 버튼 컨테이너 */
-.actions-container {
-    display: flex;
-    justify-content: center;
-    gap: 15px; /* 버튼 사이 간격 */
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-}
-
-#favoritesButton, #localSalesButton { /* 공통 스타일 */
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 1rem;
-    transition: background-color 0.15s ease-in-out;
-}
-
-#favoritesButton { /* 기존 스타일 유지 */
-    background-color: #ffc107;
-    color: #212529;
-}
-#favoritesButton:hover {
-    background-color: #e0a800;
-}
-
-#localSalesButton { /* 새 버튼 스타일 */
-    background-color: #17a2b8; /* 정보/세일 느낌 색상 */
-    color: white;
-}
-#localSalesButton:hover {
-    background-color: #138496;
-}
-
-
-#resultsContainer {
-    margin-top: 20px;
-}
-
-.results-placeholder {
-    color: #6c757d;
-    text-align: center;
-    font-size: 1rem;
-    padding: 20px 0;
-}
-
-/* 카테고리 제목 스타일 (동네 세일용) */
-.category-title {
-    font-size: 1.5em;
-    color: #28a745;
-    margin-top: 20px;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #28a745;
-}
-.category-title:first-child {
-    margin-top: 0;
-}
-
-
-.result-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 15px;
-    border: 1px solid #e9ecef;
-    background-color: #fff;
-    margin-bottom: 12px;
-    border-radius: 6px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
-    transition: box-shadow 0.2s ease-in-out;
-    position: relative;
-}
-.result-item:hover {
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-/* 세일 아이템에 대한 특별 스타일 (선택적) */
-.result-item.sale-item .product-title {
-    /* color: #e74c3c;  세일 상품 제목 강조 */
-}
-.result-item.sale-item .product-meta strong { /* 세일 가격은 이미 빨간색 */
-    /* font-size: 1.1em; */
-}
-.original-price {
-    text-decoration: line-through;
-    color: grey;
-    font-size: 0.9em;
-    margin-left: 8px;
-}
-
-
-.rank {
-    font-size: 1.3em;
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
     font-weight: bold;
-    color: #28a745;
-    margin-right: 20px;
-    min-width: 30px;
-    text-align: center;
-    line-height: 1.5;
 }
 
-.product-details {
-    display: flex;
-    flex-direction: column;
-    flex-grow: 1;
-}
-
-.product-title {
-    font-size: 1.15em;
-    font-weight: 600;
-    color: #007bff;
+.close-button:hover,
+.close-button:focus {
+    color: black;
     text-decoration: none;
-    margin-bottom: 8px;
-}
-.product-title:hover {
-    text-decoration: underline;
-    color: #0056b3;
-}
-
-.product-meta {
-    font-size: 0.95em;
-    color: #495057;
-    margin-bottom: 4px;
-}
-.product-meta strong {
-    color: #dc3545;
-    font-weight: 600;
-}
-
-.product-platform {
-    font-size: 0.85em;
-    color: #6c757d;
-    margin-top: 5px;
+    cursor: pointer;
 }

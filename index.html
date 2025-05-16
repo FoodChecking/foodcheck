@@ -11,6 +11,12 @@
         <a href="index.html" class="header-home-link">
             <div class="logo">FoodCheck</div>
         </a>
+        <div id="notificationArea">
+            <h4>🔔 알림</h4>
+            <ul id="notificationList">
+                <li>알림창이 준비되었습니다.</li>
+            </ul>
+        </div>
     </header>
 
     <main>
@@ -37,8 +43,7 @@
             </button>
         </div>
 
-        <div id="externalSearchLinksContainer">
-            </div>
+        <div id="externalSearchLinksContainer"></div>
         
         <div class="actions-container">
             <button id="favoritesButton">⭐ 내 즐겨찾기 상품</button>
@@ -49,6 +54,20 @@
             <p class="results-placeholder">상품명과 수량을 입력하고 검색 버튼을 눌러주세요.</p>
         </div>
     </main>
+
+    <div id="priceAlertModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closePriceAlertModal">&times;</span>
+            <h3>가격 알림 설정</h3>
+            <p><strong>상품명:</strong> <span id="modalProductName"></span></p>
+            <p><strong>현재 총 가격:</strong> <span id="modalCurrentPrice"></span></p>
+            <div class="form-group">
+                <label for="desiredPriceInput">원하는 가격 (이하 시 알림):</label>
+                <input type="number" id="desiredPriceInput" min="0" placeholder="숫자만 입력">
+            </div>
+            <button id="saveDesiredPriceButton">알림 설정하기</button>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
