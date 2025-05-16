@@ -1,6 +1,3 @@
-/* body, header 등 기존 스타일은 유지됩니다.
-   알림창과 모달 스타일, 그리고 header 내부 알림창 위치 조정을 위한 스타일이 추가/수정됩니다. */
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -15,39 +12,43 @@ body {
 header {
     background-color: #28a745;
     color: white;
-    padding: 10px 20px; /* 패딩 조정 */
-    text-align: center;
+    padding: 10px 20px;
     width: 100%;
     box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-    display: flex; /* 로고와 알림창 배치를 위해 flex 사용 */
-    justify-content: space-between; /* 로고는 왼쪽, 알림창은 오른쪽 */
+    display: flex;
+    justify-content: center; /* 자식 요소인 로고 링크를 중앙 정렬 */
     align-items: center;
     box-sizing: border-box;
+    position: relative; /* #notificationArea를 absolute로 배치하기 위한 기준점 */
 }
 
 .header-home-link {
     text-decoration: none;
     color: inherit;
-    display: flex; /* 로고 정렬을 위해 */
-    align-items: center;
+    display: inline-block; /* 너비가 내용만큼만 차지하도록 하고, 중앙정렬되도록 함 */
 }
 
 .logo {
-    font-size: 2em; /* 크기 약간 줄임 */
+    font-size: 2em;
     font-weight: bold;
-    text-align: left; /* 로고는 왼쪽에 있도록 */
+    display: inline-block; 
 }
 
-/* 알림창 스타일 */
 #notificationArea {
     background-color: rgba(0,0,0,0.1);
     padding: 5px 10px;
     border-radius: 5px;
     font-size: 0.8em;
-    max-height: 100px; /* 최대 높이 지정 */
-    overflow-y: auto; /* 내용 많으면 스크롤 */
-    min-width: 200px; /* 최소 너비 */
+    max-height: calc(100% - 10px); /* 헤더 패딩 고려한 최대 높이, 헤더 높이보다 크지 않게 */
+    overflow-y: auto;
+    min-width: 200px; 
+    max-width: 280px; /* 너비 약간 조정 */
     text-align: left;
+    
+    position: absolute; /* 헤더 기준으로 절대 위치 */
+    right: 20px; /* 오른쪽에서 20px 떨어진 곳에 배치 */
+    top: 50%; /* 수직 중앙 정렬을 위해 */
+    transform: translateY(-50%); /* 수직 중앙 정렬 완료 */
 }
 #notificationArea h4 {
     margin: 0 0 5px 0;
@@ -64,13 +65,15 @@ header {
     padding: 2px 0;
     border-bottom: 1px dotted rgba(255,255,255,0.2);
     font-size: 0.85em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 #notificationList li:last-child {
     border-bottom: none;
 }
 
-
-main { /* main 스타일은 이전과 동일 */
+main {
     width: 90%;
     max-width: 800px;
     margin-top: 30px;
@@ -82,12 +85,6 @@ main { /* main 스타일은 이전과 동일 */
     box-shadow: 0 0 15px rgba(0,0,0,0.08);
     border-radius: 8px;
 }
-
-/* ... (location-settings, search-container, inputs-column, input-group, #productName, #quantity, 
-   #suggestions-container, .suggestion-item, #searchButton, #externalSearchLinksContainer, 
-   .external-link-button, .actions-container, #favoritesButton, #localSalesButton, 
-   #resultsContainer, .results-placeholder, .category-title, .result-item, .rank, 
-   .product-details, .product-title, .product-meta, .product-platform 등 이전 스타일 유지) ... */
 
 .location-settings {
     margin-bottom: 25px;
@@ -147,78 +144,15 @@ main { /* main 스타일은 이전과 동일 */
 .product-meta strong { color: #dc3545; font-weight: 600; }
 .product-platform { font-size: 0.85em; color: #6c757d; margin-top: 5px; }
 
-
-/* 모달 스타일 */
-.modal {
-    display: none; /* 기본적으로 숨김 */
-    position: fixed; /* 화면에 고정 */
-    z-index: 1001; /* 다른 요소들 위에 표시 */
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto; /* 스크롤 가능 */
-    background-color: rgba(0,0,0,0.4); /* 반투명 배경 */
-}
-
-.modal-content {
-    background-color: #fefefe;
-    margin: 15% auto; /* 화면 중앙에 위치 */
-    padding: 20px;
-    border: 1px solid #888;
-    width: 80%;
-    max-width: 400px; /* 최대 너비 */
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-    text-align: left;
-}
-
-.modal-content h3 {
-    margin-top: 0;
-    color: #28a745;
-}
-.modal-content p {
-    font-size: 0.9em;
-    margin-bottom: 10px;
-}
-.modal-content .form-group { /* 모달 내 폼 그룹 스타일 */
-    margin-bottom: 15px;
-}
-.modal-content label {
-    font-size: 0.9em;
-}
-.modal-content input[type="number"] {
-    width: 100%;
-    padding: 8px;
-    font-size: 0.9em;
-}
-.modal-content button { /* 모달 내 버튼 */
-    background-color: #28a745;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.95em;
-    display: block; /* 버튼을 블록 요소로 만들어 전체 너비 사용 또는 중앙 정렬 용이 */
-    width: 100%;
-    margin-top: 10px;
-}
-.modal-content button:hover {
-    background-color: #218838;
-}
-
-
-.close-button {
-    color: #aaa;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close-button:hover,
-.close-button:focus {
-    color: black;
-    text-decoration: none;
-    cursor: pointer;
-}
+/* 모달 스타일 (이전과 동일) */
+.modal { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
+.modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: left; }
+.modal-content h3 { margin-top: 0; color: #28a745; }
+.modal-content p { font-size: 0.9em; margin-bottom: 10px; }
+.modal-content .form-group { margin-bottom: 15px; }
+.modal-content label { font-size: 0.9em; }
+.modal-content input[type="number"] { width: 100%; padding: 8px; font-size: 0.9em; }
+.modal-content button { background-color: #28a745; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 0.95em; display: block; width: 100%; margin-top: 10px; }
+.modal-content button:hover { background-color: #218838; }
+.close-button { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+.close-button:hover, .close-button:focus { color: black; text-decoration: none; cursor: pointer; }
