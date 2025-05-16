@@ -11,11 +11,14 @@
         <a href="index.html" class="header-home-link">
             <div class="logo">FoodCheck</div>
         </a>
-        <div id="notificationArea">
-            <h4>🔔 알림</h4>
-            <ul id="notificationList">
-                <li>알림창이 준비되었습니다.</li>
-            </ul>
+        <div id="notificationBellContainer">
+            <span id="notificationBellIcon" title="알림 보기">🔔</span>
+            <div id="notificationPopup" class="notification-popup">
+                <h4>알림 목록</h4>
+                <ul id="notificationList">
+                    </ul>
+                <button id="clearNotificationsButton">모든 알림 지우기</button>
+            </div>
         </div>
     </header>
 
