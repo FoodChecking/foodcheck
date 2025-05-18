@@ -1,0 +1,35 @@
+/* mart_page.html 전용 스타일 */
+body {
+    /* style.css에서 이미 대부분 정의됨 */
+}
+
+main h2#martPageTitle {
+    text-align: center;
+    color: #28a745;
+    margin-bottom: 5px;
+}
+main p#martPageLocation {
+    text-align: center;
+    font-size: 0.9em;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+#martProductListContainer .category-title { /* style.css의 .category-title 재활용 */
+    font-size: 1.3em; /* 약간 작게 */
+    margin-top: 25px;
+}
+
+#martProductListContainer .result-item { /* style.css의 .result-item 재활용 */
+    /* 마트 페이지에서는 순위(rank)가 없으므로, 왼쪽 여백 조절 가능 */
+}
+#martProductListContainer .result-item .rank {
+    display: none; /* 마트 페이지에서는 순위 숨김 */
+}
+
+.local-price-rank {
+    font-size: 0.85em;
+    color: #007bff;
+    font-style: italic;
+    margin-top: 5px;
+}

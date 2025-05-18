@@ -14,31 +14,25 @@
 
     <main>
         <section class="product-registration-form">
-            <h2>신규 상품 등록 / 수정</h2>
+            <h2>상품 관리</h2>
             <form id="productForm">
+                <h3>기본 상품 정보</h3>
                 <div class="form-group">
-                    <label for="martLocation">마트 위치 (예: 울산 우정동, 부산 전체):</label>
-                    <input type="text" id="martLocation" required placeholder="고객이 설정할 동네 이름과 유사하게">
+                    <label for="martLocationMerchant">마트 위치 (예: 울산 우정동):</label>
+                    <input type="text" id="martLocationMerchant" required placeholder="고객이 설정할 동네 이름과 유사하게">
                 </div>
                 <div class="form-group">
                     <label for="productNameMerchant">품명:</label>
                     <input type="text" id="productNameMerchant" required>
                 </div>
                 <div class="form-group">
-                    <label for="productCategory">카테고리:</label>
-                    <select id="productCategory" required>
+                    <label for="productCategoryMerchant">카테고리:</label>
+                    <select id="productCategoryMerchant" required>
                         <option value="">-- 카테고리 선택 --</option>
-                        <option value="채소">채소</option>
-                        <option value="과일">과일</option>
-                        <option value="정육/계란">정육/계란</option>
-                        <option value="수산물/건어물">수산물/건어물</option>
-                        <option value="유제품/유아식">유제품/유아식</option>
-                        <option value="냉동/간편식">냉동/간편식</option>
-                        <option value="음료/생수">음료/생수</option>
-                        <option value="과자/간식">과자/간식</option>
-                        <option value="면류/통조림">면류/통조림</option>
-                        <option value="양념/오일">양념/오일</option>
-                        <option value="기타식품">기타식품</option>
+                        <option value="채소">채소</option><option value="과일">과일</option><option value="정육/계란">정육/계란</option>
+                        <option value="수산물/건어물">수산물/건어물</option><option value="유제품/유아식">유제품/유아식</option> <option value="냉동/간편식">냉동/간편식</option>
+                        <option value="음료/생수">음료/생수</option><option value="과자/간식">과자/간식</option><option value="면류/통조림">면류/통조림</option>
+                        <option value="양념/오일">양념/오일</option><option value="기타식품">기타식품</option>
                     </select>
                 </div>
                 <div class="form-group">
@@ -46,83 +40,88 @@
                     <input type="number" id="unitPrice" required min="0">
                 </div>
                 <div class="form-group">
-                    <label for="stockQuantity">남은 재고량 (개):</label>
-                    <input type="number" id="stockQuantity" required min="0">
+                    <label for="stockQuantity">FoodCheck 판매용 재고량 (개):</label>
+                    <input type="number" id="stockQuantity" required min="0" title="FoodCheck에서 판매할 전용 재고입니다. 오프라인과 별도 관리해주세요.">
+                </div>
+                <div class="form-group">
+                    <label for="manufacturingDate">제조일자 (선택):</label>
+                    <input type="date" id="manufacturingDate">
+                </div>
+                <div class="form-group">
+                    <label for="expiryDate">유통기한 (선택):</label>
+                    <input type="date" id="expiryDate">
                 </div>
                 
                 <fieldset class="discount-group">
                     <legend>묶음 할인 조건 (선택 사항)</legend>
-                    <div class="form-group">
-                        <label for="discountUnit">할인 적용 단위 (개):</label>
-                        <input type="number" id="discountUnit" placeholder="예: 10 (10개 당)" min="1">
-                    </div>
-                    <div class="form-group">
-                        <label for="discountAmount">단위당 할인액 (원):</label>
-                        <input type="number" id="discountAmount" placeholder="예: 2000 (2000원 할인)" min="0">
-                    </div>
+                    <div class="form-group"><label for="discountUnit">할인 적용 단위 (개):</label><input type="number" id="discountUnit" placeholder="예: 10" min="1"></div>
+                    <div class="form-group"><label for="discountAmount">단위당 할인액 (원):</label><input type="number" id="discountAmount" placeholder="예: 2000" min="0"></div>
                 </fieldset>
 
                 <fieldset class="sale-group">
-                    <legend>세일 정보 (선택 사항)</legend>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="onSale">
-                        <label for="onSale" class="checkbox-label">세일 진행</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="salePrice">세일 가격 (원):</label>
-                        <input type="number" id="salePrice" min="0" placeholder="세일 시 적용될 개당 가격">
-                    </div>
+                    <legend>일반 세일 정보 (선택 사항)</legend>
+                    <div class="form-group checkbox-group"><input type="checkbox" id="onSale"><label for="onSale" class="checkbox-label">세일 진행</label></div>
+                    <div class="form-group"><label for="salePrice">세일 시 개당 가격 (원):</label><input type="number" id="salePrice" min="0"></div>
                 </fieldset>
 
                 <fieldset class="delivery-group">
                     <legend>배송 조건</legend>
-                    <div class="form-group checkbox-group">
-                        <input type="checkbox" id="deliveryAvailable" checked>
-                        <label for="deliveryAvailable" class="checkbox-label">배달 가능</label>
-                    </div>
-                    <div class="form-group">
-                        <label for="deliveryFeeMerchant">기본 배송료 (원):</label>
-                        <input type="number" id="deliveryFeeMerchant" min="0" value="2000">
-                    </div>
-                    <div class="form-group">
-                        <label for="minOrderForFreeDeliveryMerchant">무료 배송 최소 주문 금액 (원):</label>
-                        <input type="number" id="minOrderForFreeDeliveryMerchant" min="0" placeholder="0 또는 미입력 시 조건 없음" value="15000">
-                    </div>
+                    <div class="form-group checkbox-group"><input type="checkbox" id="deliveryAvailable" checked><label for="deliveryAvailable" class="checkbox-label">배달 가능</label></div>
+                    <div class="form-group"><label for="deliveryFeeMerchant">기본 배송료 (원):</label><input type="number" id="deliveryFeeMerchant" min="0" value="2000"></div>
+                    <div class="form-group"><label for="minOrderForFreeDeliveryMerchant">무료 배송 최소 주문 금액 (원):</label><input type="number" id="minOrderForFreeDeliveryMerchant" min="0" value="15000"></div>
                 </fieldset>
                 
                 <input type="hidden" id="productIdHidden">
-                <button type="submit" id="submitProductButton">상품 등록/수정</button>
-                <button type="button" id="clearFormButton" style="background-color: #777;">양식 초기화</button>
+                <button type="submit" id="submitProductButton">상품 저장</button>
+                <button type="button" id="clearFormButton" style="background-color: #777;">새 상품 등록하기</button>
             </form>
         </section>
 
         <section class="registered-products">
-            <h2>등록된 상품 목록 (내 마트: <span id="martNameDisplay">[마트 이름 연동 예정]</span>)</h2>
+            <h2>등록된 상품 목록 (내 마트: <span id="martNameDisplay">[마트 이름]</span>)</h2>
             <table>
-                <thead>
-                    <tr>
-                        <th>마트위치</th>
-                        <th>카테고리</th>
-                        <th>품명</th>
-                        <th>가격 (세일가)</th>
-                        <th>재고</th>
-                        <th>묶음할인</th>
-                        <th>배달여부</th>
-                        <th>배송료조건</th>
-                        <th>관리</th>
-                    </tr>
-                </thead>
-                <tbody id="productList">
-                    </tbody>
+                <thead><tr><th>마트위치</th><th>카테고리</th><th>품명</th><th>가격(세일가)</th><th>재고</th><th>제조일</th><th>유통기한</th><th>묶음할인</th><th>배달</th><th>배송조건</th><th>관리</th></tr></thead>
+                <tbody id="productList"></tbody>
             </table>
             <p id="noProductsMessage" style="text-align:center; display:none;">등록된 상품이 없습니다.</p>
         </section>
+
+        <hr style="margin: 40px 0;">
+
+        <section class="flash-sale-form">
+            <h2>마감 임박 세일 등록</h2>
+            <form id="flashSaleProductForm">
+                <div class="form-group">
+                    <label for="flashSaleProductSelect">세일 상품 선택 (위 목록에서 등록된 상품):</label>
+                    <select id="flashSaleProductSelect" required><option value="">-- 상품 선택 --</option></select>
+                </div>
+                <div class="form-group">
+                    <label for="flashSalePrice">마감 세일 가격 (원):</label>
+                    <input type="number" id="flashSalePrice" required min="0">
+                </div>
+                <div class="form-group">
+                    <label for="flashSaleStock">마감 세일 재고 (개):</label>
+                    <input type="number" id="flashSaleStock" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="flashSaleMaxPerPerson">1인당 최대 구매 가능 수량 (개):</label>
+                    <input type="number" id="flashSaleMaxPerPerson" required min="1">
+                </div>
+                <div class="form-group">
+                    <label for="flashSaleEndTime">마감 세일 종료 시간 (분 단위):</label>
+                    <input type="number" id="flashSaleEndTime" required min="10" placeholder="예: 60 (1시간 후 종료)">
+                </div>
+                <button type="submit">마감 세일 시작</button>
+            </form>
+        </section>
+         <section class="active-flash-sales">
+            <h2>진행중인 마감 임박 세일</h2>
+            <div id="activeFlashSalesList">
+                </div>
+            <p id="noFlashSalesMessage" style="text-align:center; display:none;">진행중인 마감 임박 세일이 없습니다.</p>
+        </section>
     </main>
-
-    <footer>
-        <p>&copy; 2025 FoodCheck (마트 관리 시스템 프로토타입)</p>
-    </footer>
-
+    <footer><p>&copy; 2025 FoodCheck (마트 관리 시스템 프로토타입)</p></footer>
     <script src="merchant_script.js"></script>
 </body>
 </html>
