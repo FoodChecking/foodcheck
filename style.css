@@ -1,5 +1,60 @@
-/* body, header 등 대부분 이전 스타일 유지 */
-/* ... (이전 CSS 내용 중 .actions-container 이전까지 동일) ... */
+/* ... (이전 CSS 내용 대부분 유지) ... */
+/* actions-container 내부 버튼들 스타일 */
+#favoritesButton, #localSalesButton, #flashSalesButton, #auctionsButton { 
+    padding: 10px 12px; 
+    border: none; border-radius: 4px; cursor: pointer;
+    font-size: 0.9rem; 
+    transition: background-color 0.15s ease-in-out;
+    margin: 5px; 
+}
+
+#favoritesButton { background-color: #ffc107; color: #212529; }
+#favoritesButton:hover { background-color: #e0a800; }
+#localSalesButton { background-color: #17a2b8; color: white; } 
+#localSalesButton:hover { background-color: #138496; }
+#flashSalesButton { background-color: #fd7e14; color: white; } 
+#flashSalesButton:hover { background-color: #e66f0f; }
+#auctionsButton { background-color: #6f42c1; color: white; } /* 경매 버튼 보라색 계열 */
+#auctionsButton:hover { background-color: #5a32a3; }
+
+
+/* 경매 아이템 표시 스타일 */
+.auction-list-item { 
+    display: flex;
+    flex-direction: column; 
+    padding: 15px;
+    border: 1px solid #6f42c1; 
+    background-color: #f3efff; /* 연한 보라색 배경 */
+    margin-bottom: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+.auction-list-item .product-title { /* .product-title 스타일 일부 재활용 */
+    font-size: 1.1em; font-weight: 600; color: #5a32a3; margin-bottom: 8px; cursor: default;
+}
+.auction-list-item .product-meta { /* .product-meta 스타일 재활용 */
+    font-size: 0.9em; color: #333; margin-bottom: 4px;
+}
+.auction-list-item .product-meta strong { /* 현재 최고가 강조 */
+    color: #d9534f; font-weight: bold;
+}
+.auction-list-item .bid-button {
+    background-color: #007bff;
+    color: white;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 0.95em;
+    align-self: flex-start; /* 버튼 왼쪽 정렬 */
+}
+.auction-list-item .bid-button:hover { background-color: #0056b3; }
+.auction-list-item .bid-button:disabled { background-color: #ccc; cursor: not-allowed;}
+
+
+/* 나머지 스타일은 이전 최종본과 동일하게 사용 */
+/* ... (이전 CSS의 나머지 모든 내용 복사 붙여넣기) ... */
 body {font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; margin: 0; background-color: #f8f9fa; color: #212529; display: flex; flex-direction: column; align-items: center; min-height: 100vh;}
 header {background-color: #28a745; color: white; padding: 10px 20px; width: 100%; box-shadow: 0 2px 4px rgba(0,0,0,0.1); display: flex; justify-content: center; align-items: center; box-sizing: border-box; position: relative; }
 .header-home-link {text-decoration: none; color: inherit; display: inline-block; }
@@ -38,55 +93,23 @@ main {width: 90%; max-width: 800px; margin-top: 30px; margin-bottom: 30px; margi
 .external-link-button:hover { transform: translateY(-2px); }
 .external-link-button.coupang { background-color: #ff4757; color: white; }
 .external-link-button.naver { background-color: #2DB400; color: white; }
-
-.actions-container {
-    display: flex;
-    justify-content: center;
-    gap: 10px; /* 버튼 간격 약간 줄임 */
-    margin-bottom: 25px;
-    flex-wrap: wrap;
-}
-
-#favoritesButton, #localSalesButton, #flashSalesButton { /* 새 버튼 포함 공통 스타일 */
-    padding: 10px 15px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 0.95rem; /* 폰트 크기 통일 */
-    transition: background-color 0.15s ease-in-out;
-}
-
-#favoritesButton { background-color: #ffc107; color: #212529; }
-#favoritesButton:hover { background-color: #e0a800; }
-
-#localSalesButton { background-color: #17a2b8; color: white; } /* 기존 '동네 세일 보기' */
-#localSalesButton:hover { background-color: #138496; }
-
-#flashSalesButton { background-color: #fd7e14; color: white; } /* '마감 임박 세일' 오렌지색 계열 */
-#flashSalesButton:hover { background-color: #e66f0f; }
-
-
+.actions-container { display: flex; justify-content: center; gap: 10px; margin-bottom: 25px; flex-wrap: wrap; }
 #resultsContainer { margin-top: 20px; }
 .results-placeholder { color: #6c757d; text-align: center; font-size: 1rem; padding: 20px 0; }
 .category-title { font-size: 1.5em; color: #28a745; margin-top: 20px; margin-bottom: 15px; padding-bottom: 5px; border-bottom: 2px solid #28a745; }
 .category-title:first-child { margin-top: 0; }
-
 .result-item { display: flex; align-items: flex-start; padding: 15px; border: 1px solid #e9ecef; background-color: #fff; margin-bottom: 12px; border-radius: 6px; box-shadow: 0 1px 3px rgba(0,0,0,0.05); transition: box-shadow 0.2s ease-in-out; position: relative; }
 .result-item:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
-.result-item.sale-item .product-title {} /* 세일 아이템 강조는 JS에서 처리 가능 */
+.result-item.sale-item .product-title {}
 .original-price { text-decoration: line-through; color: grey; font-size: 0.9em; margin-left: 8px; }
-
 .rank { font-size: 1.3em; font-weight: bold; color: #28a745; margin-right: 20px; min-width: 30px; text-align: center; line-height: 1.5; }
 .product-details { display: flex; flex-direction: column; flex-grow: 1; }
 .product-title { font-size: 1.15em; font-weight: 600; color: #007bff; text-decoration: none; margin-bottom: 8px; }
 .product-title:hover { text-decoration: underline; color: #0056b3; }
 .product-meta { font-size: 0.95em; color: #495057; margin-bottom: 4px; }
 .product-meta strong { color: #dc3545; font-weight: 600; }
-.product-platform, .product-platform-link { font-size: 0.85em; color: #6c757d; margin-top: 5px; display: block; } /* 링크도 블록으로 */
+.product-platform, .product-platform-link { font-size: 0.85em; color: #6c757d; margin-top: 5px; display: block; }
 .product-platform-link:hover { text-decoration: underline; }
-
-
-/* 모달 스타일 (이전과 동일) */
 .modal { display: none; position: fixed; z-index: 1001; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0,0,0,0.4); }
 .modal-content { background-color: #fefefe; margin: 15% auto; padding: 20px; border: 1px solid #888; width: 80%; max-width: 400px; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.2); text-align: left; }
 .modal-content h3 { margin-top: 0; color: #28a745; }
